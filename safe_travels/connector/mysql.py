@@ -86,3 +86,16 @@ class MySQLConnector(BaseConnector):
                       'RENAME TO {table};'
         success, message = self.safe_execute(query=alter_query)
         return success, message
+
+    def load_data(self, table=None, data_path=None, fields=',', enclosed='"', lines='\n'):
+        load_query = "LOAD DATA INFILE '{data_path}' " \
+                     "INTO TABLE {table} " \
+                     "FIELDS TERMINATED BY '{fields}' " \
+                     "ENCLOSED BY '{enclosed}' " \
+                     "LINES TERMINATED BY '{lines}' ".format(data_path=data_path,
+                                                             table=table,
+                                                             fields=fields,
+                                                             enclosed=enclosed,
+                                                             lines=lines)
+        success, message = self.safe_execute(query=load_query)
+        return success, message
