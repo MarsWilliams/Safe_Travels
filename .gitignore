@@ -1,6 +1,7 @@
 .env.personal
 .DS_Store
 *~
+*.pyc
 *.iml
 .idea/
 __pycache__/
